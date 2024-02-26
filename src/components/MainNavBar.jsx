@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import appLogo from "../assets/img/viewr-logo.png";
 import homeLogo from "../assets/img/home-logo.png";
@@ -18,14 +19,17 @@ function MainNavBar() {
         <Navbar
           key={expand}
           expand={expand}
-          className="bg-body-tertiary mb-3"
+          className="bg-body-tertiary justify-content-between"
           bg="dark"
           data-bs-theme="dark"
           sticky="top"
         >
           <Container fluid>
             <Navbar.Brand>
-              <img src={appLogo} alt="viewr-logo" width="90px" />
+              <div style={{display: "flex"}}>
+              <img src={appLogo} alt="viewr-logo" height="40px" style={{marginRight: "25px"}}/>
+              <SearchBar />
+              </div>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
@@ -48,7 +52,11 @@ function MainNavBar() {
                   </Link>
                   <hr />
                   <Link to={"/list-shows"}>
-                    <img src={allShowsLogo} alt="all-shows-logo" height="20px" />
+                    <img
+                      src={allShowsLogo}
+                      alt="all-shows-logo"
+                      height="20px"
+                    />
                   </Link>
                   <hr />
                   <Link to={"/about"}>
@@ -56,15 +64,6 @@ function MainNavBar() {
                   </Link>
                   <hr />
                 </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
