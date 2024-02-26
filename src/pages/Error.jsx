@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 function Error() {
   return (
     <div>
       Algo ha fallado. ¿Quieres volver al inicio? 
-      <button>Clica aquí</button> 
+     <Link to={"/home"}><button>Clica aquí</button></Link> 
     </div>
   )
 }

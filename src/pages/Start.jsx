@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Start() {
   return (
-    <div>Start</div>
-  )
+    <div>
+      <Link to={"/home"}>
+        <button>INSERT LOGO HERE</button>
+      </Link>
+    </div>
+  );
 }
 
-export default Start
+export default Start;

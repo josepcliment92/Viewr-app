@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import API_URL from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import ShowCard from "../components/ShowCard";
+
 
 function Home() {
   const [shows, setShows] = useState(null);
@@ -30,13 +31,7 @@ function Home() {
     <div>
       {shows.map((eachShow) => {
         return (
-          <Link to={`/list-shows/${eachShow["#IMDB_ID"]}`}>
-            <div key={eachShow["#IMDB_ID"]}>
-              <img src={eachShow["#IMG_POSTER"]} alt={eachShow["#TITLE"]} width="120px" />
-              <p>{eachShow["#TITLE"]}</p>
-              <p>{eachShow["#YEAR"]}</p>
-            </div>
-          </Link>
+          <ShowCard eachShow={eachShow} />
         );
       })}
     </div>
