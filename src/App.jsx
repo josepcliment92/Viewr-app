@@ -8,6 +8,7 @@ import DetailsShow from "./pages/DetailsShow";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Error from "./pages/Error";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
