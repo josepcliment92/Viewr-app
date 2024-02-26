@@ -17,7 +17,13 @@ function SearchBar() {
       <Button
         variant="primary"
         onClick={handleShow}
-        style={{ borderRadius: "100px", margin: "0px", padding: "0px", backgroundColor: "transparent", border: "0px" }}
+        style={{
+          borderRadius: "100px",
+          margin: "0px",
+          padding: "0px",
+          backgroundColor: "transparent",
+          border: "0px",
+        }}
       >
         <img src={lupaLogo} alt="lupa-logo" height="20px" />
       </Button>
@@ -29,7 +35,7 @@ function SearchBar() {
         bg="dark"
         data-bs-theme="dark"
       >
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header>
           <Offcanvas.Title>
             <img src={searchLogo} alt="search-logo" height="100px" />
           </Offcanvas.Title>
@@ -45,7 +51,7 @@ function SearchBar() {
                 />
               </Col>
               <Col xs="auto">
-                <Button type="submit">Submit</Button>
+                <Button type="submit" variant="outline-info">Search</Button>
               </Col>
             </Row>
           </Form>
