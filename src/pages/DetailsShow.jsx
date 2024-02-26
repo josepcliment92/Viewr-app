@@ -5,7 +5,7 @@ import API_URL from "../utils/api";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import ReviewSection from "../components/ReviewSection";
+import ReviewForm from "../components/ReviewForm";
 
 function DetailsShow() {
   const [show, setShow] = useState([]);
@@ -43,7 +43,7 @@ function DetailsShow() {
         </Link>
       </div>
 
-<ReviewSection />
+<ReviewForm showId={show["#IMDB_ID"]} showName={show["#TITLE"]} showImage={show["#IMG_POSTER"]} />
 
     </div>
   );
