@@ -2,7 +2,10 @@ import React from 'react'
 
 function Error() {
   return (
-    <div>Error</div>
+    <div>
+      Algo ha fallado. ¿Quieres volver al inicio? 
+      <button>Clica aquí</button> 
+    </div>
   )
 }
 
