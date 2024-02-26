@@ -8,7 +8,7 @@ function ReviewSection() {
       <h2>Review Section</h2>
       
       <ReviewForm />
-      <ReviewCard /> {/*ponerlo en plural para no generar confusión: ReviewCards*/}
+      <ReviewCard />
       </div>
   )
 }
