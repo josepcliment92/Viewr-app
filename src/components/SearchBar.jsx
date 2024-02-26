@@ -51,7 +51,7 @@ function SearchBar() {
                 />
               </Col>
               <Col xs="auto">
-                <Button type="submit">Submit</Button>
+                <Button type="submit" variant="outline-info">Search</Button>
               </Col>
             </Row>
           </Form>
