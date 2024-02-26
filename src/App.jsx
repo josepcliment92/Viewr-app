@@ -1,5 +1,5 @@
 import "./App.css";
-import MainNavBar from "./components/Navbar";
+import MainNavBar from "./components/MainNavBar";
 import { Routes, Route } from "react-router-dom";
 import Start from "./pages/Start";
 import Home from "./pages/Home";
@@ -8,6 +8,7 @@ import DetailsShow from "./pages/DetailsShow";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Error from "./pages/Error";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
