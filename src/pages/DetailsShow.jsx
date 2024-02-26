@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReviewSection from "../components/ReviewSection";
+import Button from "react-bootstrap/esm/Button";
 
 function DetailsShow() {
   const [show, setShow] = useState([]);
@@ -33,13 +34,13 @@ function DetailsShow() {
     <div key={show["#IMDB_ID"]}>
       <div>
         <img src={show["#IMG_POSTER"]} alt={show["#TITLE"]} width="200px"/>
-        <p>{show["#TITLE"]}</p>
-        <p>AKA: {show["#AKA"]}</p>
-        <p>YEAR: {show["#YEAR"]} </p>
-        <p>ACTORS: {show["#ACTORS"]}</p>
-        <p>RANKED IN IMDB: {show["#RANK"]}</p>
-        <Link to={show["#IMDB_URL"]}> 
-          <button>MORE INFORMATION</button>
+        <h2>{show["#TITLE"]}</h2>
+        <p><strong>AKA:</strong> {show["#AKA"]}</p>
+        <p><strong>Year:</strong> {show["#YEAR"]} </p>
+        <p><strong>Actors:</strong> {show["#ACTORS"]}</p>
+        <p><strong>Rank in IMDb:</strong> {show["#RANK"]}</p>
+        <Link to={show["#IMDB_URL"]} target="_blank"> 
+          <Button variant="outline-info">More info</Button>
         </Link>
       </div>
 
