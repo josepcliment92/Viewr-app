@@ -4,42 +4,55 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import logo from "../assets/img/viewr-sin-fondo.png";
 import { Link } from "react-router-dom";
+import appLogo from "../assets/img/viewr-logo.png";
+import homeLogo from "../assets/img/home-logo.png";
+import allShowsLogo from "../assets/img/all-shows-logo.png";
+import aboutLogo from "../assets/img/about-logo.png";
+import sloganLogo2 from "../assets/img/slogan-logo-2.png";
 
 function MainNavBar() {
   return (
     <>
       {[false].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
+        <Navbar
+          key={expand}
+          expand={expand}
+          className="bg-body-tertiary mb-3"
+          bg="dark"
+          data-bs-theme="dark"
+          sticky="top"
+        >
           <Container fluid>
             <Navbar.Brand>
-              <img src={logo} alt="viewr" width="50px"/>
+              <img src={appLogo} alt="viewr-logo" width="90px" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
+              bg="dark"
+              data-bs-theme="dark"
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                <img src={logo} alt="viewr" width="50px"/>
+                  <img src={sloganLogo2} alt="viewr" height="80px" />
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <hr />
                   <Link to={"/home"}>
-                    <img src={logo} alt="home" width="50px" />
+                    <img src={homeLogo} alt="home-logo" height="20px" />
                   </Link>
                   <hr />
                   <Link to={"/list-shows"}>
-                    <img src={logo} alt="about" width="50px" />
+                    <img src={allShowsLogo} alt="all-shows-logo" height="20px" />
                   </Link>
                   <hr />
                   <Link to={"/about"}>
-                    <img src={logo} alt="about" width="50px" />
+                    <img src={aboutLogo} alt="about-logo" height="20px" />
                   </Link>
                   <hr />
                 </Nav>
