@@ -1,5 +1,5 @@
 import "./App.css";
-import MainNavBar from "./components/Navbar";
+import MainNavBar from "./components/MainNavBar";
 import { Routes, Route } from "react-router-dom";
 import Start from "./pages/Start";
 import Home from "./pages/Home";
@@ -12,7 +12,7 @@ import Error from "./pages/Error";
 function App() {
   return (
     <div>
-      <MainNavBar />
+     <MainNavBar />
 
       <div>
         <Routes>
