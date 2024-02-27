@@ -20,28 +20,36 @@ function SearchBar() {
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+    setSearch(
+      setTimeout(() => {}),
+      1000
+    );
   };
 
   const [showList, setShowList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/?q=${search}`)
-      .then((response) => {
-        // console.log(response.data.description[0]["#IMDB_ID"])
-        setShowList(response.data.description);
-      })
-      .catch((error) => {
-        navigate("*");
-      });
+    const delaySearch = setTimeout(() => {
+      if (search.trim() !== "") {
+        axios
+          .get(`${API_URL}/?q=${search}`)
+          .then((response) => {
+            setShowList(response.data.description);
+          })
+          .catch((error) => {
+            navigate("*");
+          });
+      } else {
+        setShowList([]);
+      }
+    }, 1000);
+    return () => clearTimeout(delaySearch);
   }, [search]);
 
-  /*const filteredResult = showList.filter((eachShow) => {
-    if (search.length > 0) {
-      return eachShow["#TITLE"].toLowerCase().match(search.toLowerCase());
-    }
-  });*/
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate(`/list-shows/${eachResult["#IMDB_ID"]}`);
