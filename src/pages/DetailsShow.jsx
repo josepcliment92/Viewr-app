@@ -32,7 +32,7 @@ function DetailsShow() {
   async function getDataFromServer() {
     try {
       const review = await axios.get(
-        `${LOCAL_URL}/reviews?showApiId=${params.showId}`
+        `${LOCAL_URL}/reviews?showID=${params.showId}`
       );
 
       setReview(review.data);

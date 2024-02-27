@@ -27,8 +27,9 @@ function SearchBar() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}?q=${search}`)
+      .get(`${API_URL}/?q=${search}`)
       .then((response) => {
+        // console.log(response.data.description[0]["#IMDB_ID"])
         setShowList(response.data.description);
       })
       .catch((error) => {
@@ -43,7 +44,7 @@ function SearchBar() {
   });*/
   const handleSubmit = (event) => {
     event.preventDefault();
-    API_URL(search);
+    navigate(`/list-shows/${eachResult["#IMDB_ID"]}`);
   };
 
   return (
@@ -75,7 +76,7 @@ function SearchBar() {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form inline onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Row>
               <Col xs="auto">
                 <Form.Control
@@ -87,21 +88,26 @@ function SearchBar() {
                 />
               </Col>
               <Col xs="auto">
-               {/* <Button type="submit" variant="outline-info">
+                {/* <Button type="submit" variant="outline-info">
                   Search
-                </Button> */} 
+                </Button> */}
               </Col>
             </Row>
           </Form>
           <div className="filtered-result">
             {showList.map((eachResult) => {
               return (
-                <div style={{ display: "flex", flexDirection: "row" }} key={eachResult["#IMDB_ID"]}>
-                  <Link to={`/list-shows/${eachResult["#IMDB_ID"]}`}>
-                    <div>
-                      <img src={eachResult["#IMG_POSTER"]} width="40px" />
-                      <p>{eachResult["#TITLE"]}</p>
-                    </div>
+                <div
+                  onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
+                  style={{ display: "flex", flexDirection: "row" }}
+                  key={eachResult["#IMDB_ID"]}
+                >
+                  <Link
+                    to={`/list-shows/${eachResult["#IMDB_ID"]}`}
+                    onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
+                  >
+                    <img src={eachResult["#IMG_POSTER"]} width="40px" />
+                    <p>{eachResult["#TITLE"]}</p>
                   </Link>
                 </div>
               );

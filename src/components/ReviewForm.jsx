@@ -26,7 +26,6 @@ function ReviewForm(props) {
     axios
       .post(`${LOCAL_URL}/reviews`, newReview)
       .then((response) => {
-        console.log(response.data);
         props.getDataFromServer()
       })
       .catch((error) => {
