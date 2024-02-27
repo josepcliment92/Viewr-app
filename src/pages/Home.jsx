@@ -42,7 +42,9 @@ function Home() {
     <div>
       {shows.map((eachShow) => {
         return (
+          <div key={eachShow["#IMDB_ID"]}>
           <ShowCard eachShow={eachShow} />
+          </div>
         );
       })}
     </div>
