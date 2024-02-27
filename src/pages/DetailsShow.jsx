@@ -6,47 +6,126 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReviewForm from "../components/ReviewForm";
-import ReviewSection from "../components/ReviewSection";
 import Button from "react-bootstrap/esm/Button";
+import LOCAL_URL from "../utils/databaseLocal";
 
 function DetailsShow() {
   const [show, setShow] = useState([]);
-
+  const [review, setReview] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
+    getDataFromApi();
+    getDataFromServer()
+  }, []);
+
+  async function getDataFromApi() {
+    try {
+      const show = await axios.get(`${API_URL}${params.showId}`);
+
+      setShow(show.data.description[0]);
+    } catch (error) {
+      navigate("*");
+    }
+  }
+  async function getDataFromServer() {
+    try {
+      const review = await axios.get(
+        `${LOCAL_URL}/reviews?showApiId=${params.showId}`
+      );
+
+      setReview(review.data);
+    } catch (error) {
+      navigate("*");
+    }
+  }
+
+  const handleDelete = (e) => {
     axios
-      .get(`${API_URL}${params.showId}`)
-      .then((response) => {
-        setShow(response.data.description[0]);
-        //console.log(response.data.description); Averiguar por qué en la consola me sale infinitas veces el mismo array
+      .delete(`${LOCAL_URL}/reviews/${e}`)
+      .then(() => {
+        getDataFromServer();
       })
-      .catch((error) => {
-        navigate("*");
+      .catch((err) => {
+        console.log(err);
       });
-  });
+  };
 
   if (show === null) {
     return <h3> Cargando... </h3>; // incluir más adelante un Spinner
   }
 
   return (
-    <div key={show["#IMDB_ID"]}>
+    <div>
       <div>
-        <img src={show["#IMG_POSTER"]} alt={show["#TITLE"]} width="200px"/>
+        <img src={show["#IMG_POSTER"]} alt={show["#TITLE"]} width="200px" />
         <h2>{show["#TITLE"]}</h2>
-        <p><strong>AKA:</strong> {show["#AKA"]}</p>
-        <p><strong>Year:</strong> {show["#YEAR"]} </p>
-        <p><strong>Actors:</strong> {show["#ACTORS"]}</p>
-        <p><strong>Rank in IMDb:</strong> {show["#RANK"]}</p>
-        <Link to={show["#IMDB_URL"]} target="_blank"> 
-          <Button variant="outline-info">More info</Button>
+        <hr />
+        <p>
+          <strong>AKA:</strong> {show["#AKA"]}
+        </p>
+        <p>
+          <strong>Year:</strong> {show["#YEAR"]}{" "}
+        </p>
+        <p>
+          <strong>Actors:</strong> {show["#ACTORS"]}
+        </p>
+        <p>
+          <strong>Rank in IMDb:</strong> {show["#RANK"]}
+        </p>
+        <Link to={show["#IMDB_URL"]} target="_blank">
+          <Button variant="outline-info" style={{ margin: "25px" }}>
+            More info
+          </Button>
         </Link>
+        <hr />
       </div>
-
-<ReviewForm showId={show["#IMDB_ID"]} showName={show["#TITLE"]} showImage={show["#IMG_POSTER"]} />
-
+      <div>
+        <ReviewForm
+          showId={show["#IMDB_ID"]}
+          showName={show["#TITLE"]}
+          showImage={show["#IMG_POSTER"]}
+          getDataFromServer={getDataFromServer}
+        />
+      </div>
+      <div>
+        <hr />
+        {review.map((eachReview) => {
+          return (
+            <div key={eachReview.id}>
+              <h1>
+                <strong>Rating:</strong>
+                <br />
+                {eachReview.rating}
+              </h1>
+              <h3>
+                <strong>Review:</strong>
+                <br />
+                {eachReview.review}
+              </h3>
+              <h3 style={{ marginBottom: "50px" }}>
+                <strong>Username:</strong>
+                <br />
+                {eachReview.username}
+              </h3>
+              <div className="d-grid gap-2">
+                <Button variant="outline-warning" size="lg">
+                  Edit
+                </Button>
+                <Button
+                  variant="outline-danger"
+                  size="lg"
+                  onClick={(e) => handleDelete(eachReview.id)}
+                >
+                  Delete
+                </Button>
+              </div>
+              <hr />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
