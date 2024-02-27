@@ -34,12 +34,14 @@ function MainNavBar() {
           <Container fluid>
             <Navbar.Brand>
               <div style={{ display: "flex" }}>
-                <img
-                  src={appLogo}
-                  alt="viewr-logo"
-                  height="40px"
-                  style={{ marginRight: "25px" }}
-                />
+                <Link to={"/home"}>
+                  <img
+                    src={appLogo}
+                    alt="viewr-logo"
+                    height="40px"
+                    style={{ marginRight: "25px" }}
+                  />
+                </Link>
                 <SearchBar />
               </div>
             </Navbar.Brand>

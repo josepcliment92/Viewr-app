@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}a`) //cambiar el filtro de búsqueda en la URL. Filtro de prueba con la a.
+      .get(`${API_URL}/?q=a`) //cambiar el filtro de búsqueda. letra aleatoria + filtro de mejor ranking IMDB 
       .then((response) => {
         setShows(response.data.description);
       })

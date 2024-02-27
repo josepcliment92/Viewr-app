@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import API_URL from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import LOCAL_URL from "../utils/databaseLocal";
 

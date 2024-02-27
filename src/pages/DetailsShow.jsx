@@ -6,7 +6,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReviewForm from "../components/ReviewForm";
-import ReviewSection from "../components/ReviewSection";
 import Button from "react-bootstrap/esm/Button";
 
 function DetailsShow() {
@@ -17,7 +16,7 @@ function DetailsShow() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}${params.showId}`)
+      .get(`${API_URL}/?q=${params.showId}`)
       .then((response) => {
         setShow(response.data.description[0]);
         //console.log(response.data.description); Averiguar por qué en la consola me sale infinitas veces el mismo array
@@ -25,7 +24,7 @@ function DetailsShow() {
       .catch((error) => {
         navigate("*");
       });
-  });
+  }, []);
 
   if (show === null) {
     return <h3> Cargando... </h3>; // incluir más adelante un Spinner

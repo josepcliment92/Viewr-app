@@ -13,7 +13,7 @@ function ListShows() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}true`) //cambiar el filtro de búsqueda en la URL. Filtro de prueba con true.
+      .get(`${API_URL}/?q=true`) //cambiar el filtro de búsqueda. letra aleatoria
       .then((response) => {
         setShows(response.data.description);
       })
