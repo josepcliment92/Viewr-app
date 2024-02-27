@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 
@@ -27,8 +27,8 @@ function EditReviewForm(props) {
       .update(`${LOCAL_URL}/reviews/${id}`, editReview)
       .then((res) => {
         // props.setReview(editReview);
-        console.log(res)
-        props.getDataFromServer()
+        console.log(res);
+        props.getDataFromServer();
         props.handleToggleUpdateForm(false);
       })
       .catch((err) => {
@@ -54,25 +54,22 @@ function EditReviewForm(props) {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-
-      <FloatingLabel
+        <FloatingLabel
           controlId="floatingInput"
           label="Rating:"
           className="mb-3"
         >
-          <Form.Control
-            type="number"
-            value={rating}
-            onChange={handleRating}
-          />
+          <Form.Control type="number" value={rating} onChange={handleRating} />
         </FloatingLabel>
 
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Comment:"
-          className="mb-3"
-        >
-          <Form.Control type="text" value={comment} onChange={handleComment} />
+        <FloatingLabel controlId="floatingTextarea2" label="Comments" className="mb-3">
+          <Form.Control
+            as="textarea"
+            //placeholder="Leave a comment here"
+            style={{ height: "100px" }}
+            value={comment}
+            onChange={handleComment}
+          />
         </FloatingLabel>
 
         <FloatingLabel
@@ -80,7 +77,11 @@ function EditReviewForm(props) {
           label="Username:"
           className="mb-3"
         >
-          <Form.Control type="text" value={username} onChange={handleUsername} />
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={handleUsername}
+          />
         </FloatingLabel>
 
         <div className="d-grid gap-2">
