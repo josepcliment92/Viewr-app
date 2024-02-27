@@ -47,12 +47,28 @@ function EditReviewForm(props) {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
+      <FloatingLabel label="Rate this show:" controlId="floatingSelect">
+          <Form.Select type="number" value={rating} onChange={handleRating}>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          </Form.Select>.
+        </FloatingLabel>
+
         <FloatingLabel
-          controlId="floatingInput"
-          label="Rating:"
+          controlId="floatingTextarea2"
+          label="Comment:"
           className="mb-3"
         >
-          <Form.Control type="number" value={rating} onChange={handleRating} />
+          <Form.Control
+            as="textarea"
+            style={{ height: '100px' }}
+            value={comment}
+            onChange={handleComment}
+          />
         </FloatingLabel>
 
         <FloatingLabel
@@ -68,9 +84,9 @@ function EditReviewForm(props) {
         </FloatingLabel>
 
         <div className="d-grid gap-2">
-          <Button variant="outline-warning" size="lg" type="submit">
-            Edit review
-          </Button>
+          <Button style={{color: "white" }} variant="outline-warning" size="lg" type="submit">
+            Edit review 
+          </Button> {/* Pendiente modificar el color del botón Edit Review antes de que el ratón se ponga encima (que sea amarillo) */}
         </div>
       </Form>
     </div>

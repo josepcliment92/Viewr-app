@@ -16,6 +16,7 @@ function DetailsShow() {
   const navigate = useNavigate();
   const params = useParams();
   const [isUpdateFormShowing, setIsUpdateFormShowing] = useState(false);
+  const [isAddFormShowing, setIsAddFormShowing] = useState(false);
 
   useEffect(() => {
     getDataFromApi();
@@ -56,6 +57,10 @@ function DetailsShow() {
     setIsUpdateFormShowing(!isUpdateFormShowing);
   };
 
+  const handleToggleAddForm = () => {
+    setIsAddFormShowing(!isAddFormShowing);
+  };
+
   if (show === null) {
     return <h3> Cargando... </h3>; // incluir más adelante un Spinner
   }
@@ -79,19 +84,24 @@ function DetailsShow() {
           <strong>Rank in IMDb:</strong> {show["#RANK"]}
         </p>
         <Link to={show["#IMDB_URL"]} target="_blank">
-          <Button variant="outline-info" style={{ margin: "25px" }}>
+          <Button variant="primary" style={{ margin: "25px" }}>
             More info
           </Button>
         </Link>
         <hr />
       </div>
-      <div>
-        <ReviewForm
+      
+      <div className="d-grid gap-2">
+        <Button variant="success" size="lg" onClick={handleToggleAddForm} >Did you like the show? Tell us!</Button>
+        {isAddFormShowing === true ? (
+        <ReviewForm 
           showId={show["#IMDB_ID"]}
           showName={show["#TITLE"]}
           showImage={show["#IMG_POSTER"]}
           getDataFromServer={getDataFromServer}
+          handleToggleAddForm={handleToggleAddForm}
         />
+        ) : null}
       </div>
       <div>
         <hr />
@@ -114,7 +124,7 @@ function DetailsShow() {
                 {eachReview.username}
               </h3>
               <div className="d-grid gap-2">
-                <Button variant="outline-warning" size="lg" onClick={handleToggleUpdateForm}>
+                <Button style={{color: "white"}} variant="warning" size="lg" onClick={handleToggleUpdateForm}>
                   Edit
                 </Button>
                 {isUpdateFormShowing === true ? (
@@ -126,7 +136,7 @@ function DetailsShow() {
                 />
                 ) : null}
                 <Button
-                  variant="outline-danger"
+                  variant="danger"
                   size="lg"
                   onClick={(e) => handleDelete(eachReview.id)}
                 >

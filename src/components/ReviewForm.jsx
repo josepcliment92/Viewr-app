@@ -29,6 +29,7 @@ function ReviewForm(props) {
       .post(`${LOCAL_URL}/reviews`, newComent)
       .then((response) => {
         props.getDataFromServer();
+        props.handleToggleAddForm();
       })
       .catch((error) => {
         navigate("*");
@@ -37,47 +38,62 @@ function ReviewForm(props) {
 
   return (
     <div>
-      <h3>Did you like the show? Tell us!</h3>
+      
 
       <Form onSubmit={handleSubmit}>
-        <FloatingLabel controlId="floatingSelect" label="Works with selects">Rating:</FloatingLabel>
-        <Form.Select
-          size="lg"
-          min="0"
-          max="5"
-          step="1"
-          type="number"
-          name="rating"
-          placeholder="Rate this show"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
+        <FloatingLabel
+          className="mb-3"
+          label="Rate this show:"
+          controlId="floatingSelect"
         >
-          <option value="" selected disabled>Rate this show</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </Form.Select>
+          <Form.Select
+            size="lg"
+            min="0"
+            max="5"
+            step="1"
+            type="number"
+            name="rating"
+            placeholder="Rate this show"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </Form.Select>
+        </FloatingLabel>
 
-        <label>Coment:</label>
-        <input
-          type="text"
-          name="coment"
-          value={coment}
-          onChange={(e) => setComent(e.target.value)}
-        />
-
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-
-        <button type="submit">Add your coment</button>
+        <FloatingLabel
+          controlId="floatingTextarea2"
+          label="Comment:"
+          className="mb-3"
+        >
+          <Form.Control
+            as="textarea"
+            style={{ height: "100px" }}
+            value={coment}
+            onChange={(e) => setComent(e.target.value)}
+          />
+        </FloatingLabel>
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Username:"
+          className="mb-3"
+        >
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </FloatingLabel>
+        <div className="d-grid gap-2">
+          <Button variant="outline-success" size="lg" type="submit">
+          Add your comment
+          </Button>
+          </div>
       </Form>
     </div>
   );
