@@ -2,32 +2,25 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
+import LOCAL_URL from "../utils/databaseLocal";
 
 function EditReviewForm(props) {
   const review = props.review;
-  const [id, setId] = useState(review.id);
   const [rating, setRating] = useState(review.rating);
   const [comment, setComment] = useState(review.review);
-  const [showID, setShowID] = useState(review.showID);
-  const [showImg, setShowImg] = useState(review.showImage);
-  const [showTitle, setShowTitle] = useState(review.showTitle);
   const [username, setUsername] = useState(review.username);
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const editReview = {
-      id: id,
       rating: rating,
       review: comment,
-      showID: showID,
-      showImage: showImg,
-      showTitle: showTitle,
       username: username,
     };
     axios
-      .update(`${LOCAL_URL}/reviews/${id}`, editReview)
+      .patch(`${LOCAL_URL}/reviews/${review.id}`, editReview)
       .then((res) => {
-        // props.setReview(editReview);
-        console.log(res);
         props.getDataFromServer();
         props.handleToggleUpdateForm(false);
       })
@@ -60,16 +53,6 @@ function EditReviewForm(props) {
           className="mb-3"
         >
           <Form.Control type="number" value={rating} onChange={handleRating} />
-        </FloatingLabel>
-
-        <FloatingLabel controlId="floatingTextarea2" label="Comments" className="mb-3">
-          <Form.Control
-            as="textarea"
-            //placeholder="Leave a comment here"
-            style={{ height: "100px" }}
-            value={comment}
-            onChange={handleComment}
-          />
         </FloatingLabel>
 
         <FloatingLabel
