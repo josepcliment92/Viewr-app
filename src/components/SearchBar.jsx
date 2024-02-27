@@ -96,7 +96,7 @@ function SearchBar() {
           <div className="filtered-result">
             {showList.map((eachResult) => {
               return (
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <div style={{ display: "flex", flexDirection: "row" }} key={eachResult["#IMDB_ID"]}>
                   <Link to={`/list-shows/${eachResult["#IMDB_ID"]}`}>
                     <div>
                       <img src={eachResult["#IMG_POSTER"]} width="40px" />

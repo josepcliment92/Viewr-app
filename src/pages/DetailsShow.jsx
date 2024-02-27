@@ -22,7 +22,7 @@ function DetailsShow() {
 
   async function getDataFromApi() {
     try {
-      const show = await axios.get(`${API_URL}${params.showId}`);
+      const show = await axios.get(`${API_URL}/?q=${params.showId}`);
 
       setShow(show.data.description[0]);
     } catch (error) {
