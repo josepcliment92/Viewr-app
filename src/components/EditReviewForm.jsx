@@ -1,34 +1,27 @@
 import { useEffect, useState } from "react";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
+import LOCAL_URL from "../utils/databaseLocal";
 
 function EditReviewForm(props) {
   const review = props.review;
-  const [id, setId] = useState(review.id);
   const [rating, setRating] = useState(review.rating);
   const [comment, setComment] = useState(review.review);
-  const [showID, setShowID] = useState(review.showID);
-  const [showImg, setShowImg] = useState(review.showImage);
-  const [showTitle, setShowTitle] = useState(review.showTitle);
   const [username, setUsername] = useState(review.username);
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const editReview = {
-      id: id,
       rating: rating,
       review: comment,
-      showID: showID,
-      showImage: showImg,
-      showTitle: showTitle,
       username: username,
     };
     axios
-      .update(`${LOCAL_URL}/reviews/${id}`, editReview)
+      .patch(`${LOCAL_URL}/reviews/${review.id}`, editReview)
       .then((res) => {
-        // props.setReview(editReview);
-        console.log(res)
-        props.getDataFromServer()
+        props.getDataFromServer();
         props.handleToggleUpdateForm(false);
       })
       .catch((err) => {
@@ -54,17 +47,12 @@ function EditReviewForm(props) {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-
-      <FloatingLabel
+        <FloatingLabel
           controlId="floatingInput"
           label="Rating:"
           className="mb-3"
         >
-          <Form.Control
-            type="number"
-            value={rating}
-            onChange={handleRating}
-          />
+          <Form.Control type="number" value={rating} onChange={handleRating} />
         </FloatingLabel>
 
         <FloatingLabel
@@ -80,7 +68,11 @@ function EditReviewForm(props) {
           label="Username:"
           className="mb-3"
         >
-          <Form.Control type="text" value={username} onChange={handleUsername} />
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={handleUsername}
+          />
         </FloatingLabel>
 
         <div className="d-grid gap-2">
