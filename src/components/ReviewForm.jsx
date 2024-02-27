@@ -9,7 +9,7 @@ function ReviewForm(props) {
   const [review, setReview] = useState("");
   const [username, setUsername] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,18 +23,17 @@ function ReviewForm(props) {
       showImage: props.showImage,
     };
 
-axios.post(`${LOCAL_URL}/reviews`, newReview)
-.then((response) => {
-console.log(response.data)
-
-}).catch((error) => {
-navigate("*")
-})
-
-};
-
+    axios
+      .post(`${LOCAL_URL}/reviews`, newReview)
+      .then((response) => {
+        console.log(response.data);
+        props.getDataFromServer()
+      })
+      .catch((error) => {
+        navigate("*");
+      });
+  };
   
-
   return (
     <div>
       <h3>Did you like the show? Tell us!</h3>
