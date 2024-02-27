@@ -8,22 +8,23 @@ import { Link } from "react-router-dom";
 import ReviewForm from "../components/ReviewForm";
 import Button from "react-bootstrap/esm/Button";
 import LOCAL_URL from "../utils/databaseLocal";
+import EditReviewForm from "../components/EditReviewForm";
 
 function DetailsShow() {
   const [show, setShow] = useState([]);
   const [review, setReview] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
+  const [isUpdateFormShowing, setIsUpdateFormShowing] = useState(false);
 
   useEffect(() => {
     getDataFromApi();
-    getDataFromServer()
+    getDataFromServer();
   }, []);
 
   async function getDataFromApi() {
     try {
       const show = await axios.get(`${API_URL}/?q=${params.showId}`);
-
       setShow(show.data.description[0]);
     } catch (error) {
       navigate("*");
@@ -34,7 +35,6 @@ function DetailsShow() {
       const review = await axios.get(
         `${LOCAL_URL}/reviews?showID=${params.showId}`
       );
-
       setReview(review.data);
     } catch (error) {
       navigate("*");
@@ -50,6 +50,10 @@ function DetailsShow() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleToggleUpdateForm = () => {
+    setIsUpdateFormShowing(!isUpdateFormShowing);
   };
 
   if (show === null) {
@@ -110,9 +114,17 @@ function DetailsShow() {
                 {eachReview.username}
               </h3>
               <div className="d-grid gap-2">
-                <Button variant="outline-warning" size="lg">
+                <Button variant="outline-warning" size="lg" onClick={handleToggleUpdateForm}>
                   Edit
                 </Button>
+                {isUpdateFormShowing === true ? (
+                <EditReviewForm
+                  review={eachReview}
+                  setReview={setReview}
+                  getDataFromServer={getDataFromServer}
+                  handleToggleUpdateForm={handleToggleUpdateForm}
+                />
+                ) : null}
                 <Button
                   variant="outline-danger"
                   size="lg"
@@ -131,5 +143,3 @@ function DetailsShow() {
 }
 
 export default DetailsShow;
-
-//En el botón de MORE INFORMATION, hacer que el link se abra en una pestaña nueva para no salir de nuestra página (es un link externo)
