@@ -6,7 +6,7 @@ import LOCAL_URL from "../utils/databaseLocal";
 
 function ReviewForm(props) {
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState("");
+  const [coment, setComent] = useState("");
   const [username, setUsername] = useState("");
 
   const navigate = useNavigate();
@@ -14,9 +14,9 @@ function ReviewForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newReview = {
+    const newComent = {
       rating: rating,
-      review: review,
+      coment: coment,
       username: username,
       showID: props.showId,
       showTitle: props.showName,
@@ -24,7 +24,7 @@ function ReviewForm(props) {
     };
 
     axios
-      .post(`${LOCAL_URL}/reviews`, newReview)
+      .post(`${LOCAL_URL}/reviews`, newComent)
       .then((response) => {
         props.getDataFromServer()
       })
@@ -46,12 +46,12 @@ function ReviewForm(props) {
           onChange={(e) => setRating(e.target.value)}
         />
 
-        <label>Review:</label>
+        <label>Coment:</label>
         <input
           type="text"
-          name="review"
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
+          name="coment"
+          value={coment}
+          onChange={(e) => setComent(e.target.value)}
         />
 
         <label>Username:</label>
@@ -62,7 +62,7 @@ function ReviewForm(props) {
           onChange={(e) => setUsername(e.target.value)}
         />
 
-        <button type="submit">Add your review</button>
+        <button type="submit">Add your coment</button>
       </form>
     </div>
   );
