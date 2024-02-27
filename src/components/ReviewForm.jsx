@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 
 function ReviewForm(props) {
   const [rating, setRating] = useState(0);
-  const [coment, setComent] = useState("");
+  const [comment, setComent] = useState("");
   const [username, setUsername] = useState("");
 
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function ReviewForm(props) {
 
     const newComent = {
       rating: rating,
-      coment: coment,
+      review: comment,
       username: username,
       showID: props.showId,
       showTitle: props.showName,
@@ -74,7 +74,7 @@ function ReviewForm(props) {
           <Form.Control
             as="textarea"
             style={{ height: "100px" }}
-            value={coment}
+            value={comment}
             onChange={(e) => setComent(e.target.value)}
           />
         </FloatingLabel>
