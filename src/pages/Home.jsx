@@ -8,6 +8,7 @@ import ShowCard from "../components/ShowCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import { TailSpin } from "react-loader-spinner";
 
 function Home() {
   const [lastReviews, setLastReviews] = useState(null);
@@ -32,15 +33,19 @@ function Home() {
       });
   }, []);
 
-  if (shows === null) {
-    return <h3> Cargando... </h3>; // incluir más adelante un Spinner
+  if (lastReviews === null) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <TailSpin color={"white"} size={500} />
+      </div>
+    );
   }
 
   return (
     <div className="card-home-list-shows">
       {shows.map((eachShow) => {
         return (
-          <div >
+          <div>
             <ShowCard eachShow={eachShow} />
           </div>
         );
