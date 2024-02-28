@@ -8,6 +8,8 @@ import ShowCard from "../components/ShowCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import lastReviewsLogo from "../assets/img/last-reviews-logo.png";
+import LastReviews from "../components/LastReviews";
 
 function Home() {
   const [lastReviews, setLastReviews] = useState(null);
@@ -32,19 +34,31 @@ function Home() {
       });
   }, []);
 
-  if (shows === null) {
+  if (lastReviews === null) {
     return <h3> Cargando... </h3>; // incluir más adelante un Spinner
   }
 
   return (
-    <div className="card-home-list-shows">
-      {shows.map((eachShow) => {
-        return (
-          <div >
-            <ShowCard eachShow={eachShow} />
-          </div>
-        );
-      })}
+    <div>
+      <img
+        src={lastReviewsLogo}
+        alt="last-reviews-logo"
+        style={{
+          maxWidth: "100%",
+          height: "auto",
+          display: "block",
+          margin: "0 auto",
+        }}
+      />
+      <div className="card-home-list-shows">
+        {lastReviews.map((eachReview) => {
+          return (
+            <div key={eachReview.id}>
+              <LastReviews review={eachReview} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

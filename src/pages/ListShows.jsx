@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import API_URL from "../utils/api";
 import axios from "axios";
 import ShowCard from "../components/ShowCard";
+import { TailSpin } from "react-loader-spinner";
+import allShowsLogo from "../assets/img/all-shows-logo.png";
 
 function ListShows() {
   const [shows, setShows] = useState(null);
@@ -99,14 +101,18 @@ function ListShows() {
   }
 
   return (
-    <div className="card-home-list-shows">
-      {shows.map((eachShow) => {
-        return (
-          <div key={eachShow["#IMDB_ID"]}>
-          <ShowCard eachShow={eachShow} />
-          </div>
-        );
-      })}
+    <div>
+      <img src={allShowsLogo} alt="all-shows-logo" 
+      style={{maxWidth: "100%", height: "auto", display: "block", margin: "0 auto"}}/>
+      <div className="card-home-list-shows">
+        {shows.map((eachShow) => {
+          return (
+            <div key={eachShow["#IMDB_ID"]}>
+              <ShowCard eachShow={eachShow} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
