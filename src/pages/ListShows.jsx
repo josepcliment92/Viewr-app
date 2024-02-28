@@ -38,7 +38,7 @@ function ListShows() {
   }
 
   return (
-    <div>
+    <div className="card-home-list-shows">
       {shows.map((eachShow) => {
         return (
           <div key={eachShow["#IMDB_ID"]}>

@@ -4,6 +4,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 import lupaLogo from "../assets/img/logo-lupa.png";
 import searchLogo from "../assets/img/search-logo.png";
 import API_URL from "../utils/api";
@@ -80,7 +81,7 @@ function SearchBar() {
       >
         <Offcanvas.Header>
           <Offcanvas.Title>
-            <img src={searchLogo} alt="search-logo" height="100px" />
+            <img src={searchLogo} alt="search-logo" height="70px" />
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -102,7 +103,7 @@ function SearchBar() {
               </Col>
             </Row>
           </Form>
-          <div className="filtered-result">
+          <div className="card-search-bar">
             {showList.map((eachResult) => {
               return (
                 <div
@@ -113,9 +114,14 @@ function SearchBar() {
                   <Link
                     to={`/list-shows/${eachResult["#IMDB_ID"]}`}
                     onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
+                    style={{textDecoration: "none"}}
                   >
-                    <img src={eachResult["#IMG_POSTER"]} width="40px" />
-                    <p>{eachResult["#TITLE"]}</p>
+                    <Card style={{ width: "4rem", margin: "0.5em"}}>
+                      <Card.Img style={{height: "6em" }}variant="top" src={eachResult["#IMG_POSTER"]}  />
+                      <Card.Body style={{height: "8rem", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                      <Card.Title className="card-title-search-bar">{eachResult["#TITLE"]}</Card.Title>
+                      </Card.Body>
+                    </Card>
                   </Link>
                 </div>
               );

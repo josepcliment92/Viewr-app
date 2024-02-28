@@ -5,3 +5,30 @@
   text-align: center;
   background-color: #2b3035;
 }
+
+.card-title {
+  color: black !important;
+}
+
+.card-title-search-bar {
+  color: white !important;
+  font-size: 0.8em !important; 
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-home-list-shows {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card-search-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

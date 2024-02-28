@@ -5,7 +5,9 @@ import API_URL from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ShowCard from "../components/ShowCard";
-
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 function Home() {
   const [shows, setShows] = useState(null);
@@ -13,19 +15,76 @@ function Home() {
   const navigate = useNavigate();
 
   const lettersNumbers = [
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-    'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
   ];
-  
+
   const randomIndex = Math.floor(Math.random() * lettersNumbers.length);
   const randomResult = lettersNumbers[randomIndex];
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/?q=${randomResult}`) // filtrar randomResult por ranking IMDb 
+      .get(`${API_URL}/?q=${randomResult}`) // filtrar randomResult por ranking IMDb
       .then((response) => {
         setShows(response.data.description);
       })
@@ -34,16 +93,16 @@ function Home() {
       });
   }, []);
 
-  if ((shows === null)) {
-    return <h3> Cargando... </h3> // incluir más adelante un Spinner
+  if (shows === null) {
+    return <h3> Cargando... </h3>; // incluir más adelante un Spinner
   }
 
   return (
-    <div>
+    <div className="card-home-list-shows">
       {shows.map((eachShow) => {
         return (
-          <div key={eachShow["#IMDB_ID"]}>
-          <ShowCard eachShow={eachShow} />
+          <div >
+            <ShowCard eachShow={eachShow} />
           </div>
         );
       })}
