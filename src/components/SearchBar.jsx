@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [show, setShow] = useState(false);
+  const [spinner, setSpinner] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -21,13 +22,17 @@ function SearchBar() {
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
+    setSpinner(true);
     if (searchTimeout) {
       clearTimeout(searchTimeout);
+      
     }
     setSearch(
       setTimeout(() => {}),
       1000
+      
     );
+    
   };
 
   const [showList, setShowList] = useState([]);
@@ -40,6 +45,7 @@ function SearchBar() {
           .get(`${API_URL}/?q=${search}`)
           .then((response) => {
             setShowList(response.data.description);
+            setSpinner(false);
           })
           .catch((error) => {
             navigate("*");
@@ -48,11 +54,12 @@ function SearchBar() {
         setShowList([]);
       }
     }, 1000);
-    return () => clearTimeout(delaySearch);
+    return () => clearTimeout(delaySearch); 
   }, [search]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    //setSpinner(false);
     navigate(`/list-shows/${eachResult["#IMDB_ID"]}`);
   };
 
@@ -86,21 +93,24 @@ function SearchBar() {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form onSubmit={handleSubmit}>
+          <Form inline onSubmit={handleSubmit}>
             <Row>
               <Col xs="auto">
                 <Form.Control
                   type="text"
                   placeholder="Search Your Show"
                   className=" mr-sm-2"
-                  value={search}
+                  value={search} 
                   onChange={handleSearch}
                 />
+               
               </Col>
-              <Col xs="auto" >
-                {/* <Button type="submit" variant="outline-info">
-                  Search
-                </Button> */}
+              <Col xs="auto">
+                 {spinner && (
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                ) }
               </Col>
             </Row>
           </Form>
@@ -115,12 +125,25 @@ function SearchBar() {
                   <Link
                     to={`/list-shows/${eachResult["#IMDB_ID"]}`}
                     onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
-                    style={{textDecoration: "none"}}
+                    style={{ textDecoration: "none" }}
                   >
-                    <Card style={{ width: "10rem", margin: "0.5em"}}>
-                      <Card.Img style={{maxHeight: "10rem", objectFit: "cover"}}variant="top" src={eachResult["#IMG_POSTER"]}  />
-                      <Card.Body style={{height: "6rem", display: "flex", flexDirection: "column", justifyContent: "center"}}>
-                      <Card.Title className="card-title-search-bar">{eachResult["#AKA"]}</Card.Title>
+                    <Card style={{ width: "10rem", margin: "0.5em" }}>
+                      <Card.Img
+                        style={{ maxHeight: "10rem", objectFit: "cover" }}
+                        variant="top"
+                        src={eachResult["#IMG_POSTER"]}
+                      />
+                      <Card.Body
+                        style={{
+                          height: "6rem",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Card.Title className="card-title-search-bar">
+                          {eachResult["#AKA"]}
+                        </Card.Title>
                       </Card.Body>
                     </Card>
                   </Link>

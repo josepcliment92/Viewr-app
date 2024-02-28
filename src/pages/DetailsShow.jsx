@@ -10,9 +10,10 @@ import LOCAL_URL from "../utils/databaseLocal";
 import ReviewCard from "../components/ReviewCard";
 import DetailsCard from "../components/DetailsCard";
 import Card from "react-bootstrap/Card";
+import { TailSpin } from "react-loader-spinner";
 
 function DetailsShow() {
-  const [show, setShow] = useState([]);
+  const [show, setShow] = useState(null);
   const [review, setReview] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
@@ -47,7 +48,11 @@ function DetailsShow() {
   };
 
   if (show === null) {
-    return <h3> Cargando... </h3>; // incluir más adelante un Spinner
+    return (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <TailSpin color={"white"} size={500} />
+        </div>
+    );
   }
 
   return (
