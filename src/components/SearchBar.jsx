@@ -73,6 +73,7 @@ function SearchBar() {
       </Button>
 
       <Offcanvas
+        className="my-custom-off-canvas"
         show={show}
         onHide={handleClose}
         placement="top"
@@ -96,7 +97,7 @@ function SearchBar() {
                   onChange={handleSearch}
                 />
               </Col>
-              <Col xs="auto">
+              <Col xs="auto" >
                 {/* <Button type="submit" variant="outline-info">
                   Search
                 </Button> */}
@@ -116,10 +117,10 @@ function SearchBar() {
                     onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
                     style={{textDecoration: "none"}}
                   >
-                    <Card style={{ width: "8rem", margin: "0.5em"}}>
+                    <Card style={{ width: "10rem", margin: "0.5em"}}>
                       <Card.Img style={{maxHeight: "10rem", objectFit: "cover"}}variant="top" src={eachResult["#IMG_POSTER"]}  />
-                      <Card.Body style={{height: "4rem", display: "flex", flexDirection: "column", justifyContent: "center"}}>
-                      <Card.Title className="card-title-search-bar">{eachResult["#TITLE"]}</Card.Title>
+                      <Card.Body style={{height: "6rem", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                      <Card.Title className="card-title-search-bar">{eachResult["#AKA"]}</Card.Title>
                       </Card.Body>
                     </Card>
                   </Link>

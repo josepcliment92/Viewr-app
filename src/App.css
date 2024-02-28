@@ -41,3 +41,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+.my-custom-off-canvas {
+  height: 420px!important;
+}
