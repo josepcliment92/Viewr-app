@@ -15,7 +15,9 @@ function ReviewForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const currentDate = new Date();
+    const date = `Date: ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}, 
+    Time: ${currentDate.getHours()}:${currentDate.getMinutes()}`;
     const newComent = {
       rating: rating,
       review: comment,
@@ -23,6 +25,7 @@ function ReviewForm(props) {
       showID: props.showId,
       showTitle: props.showName,
       showImage: props.showImage,
+      date: date,
     };
 
     axios
@@ -38,8 +41,6 @@ function ReviewForm(props) {
 
   return (
     <div>
-      
-
       <Form onSubmit={handleSubmit}>
         <FloatingLabel
           className="mb-3"
@@ -91,9 +92,9 @@ function ReviewForm(props) {
         </FloatingLabel>
         <div className="d-grid gap-2">
           <Button variant="outline-success" size="lg" type="submit">
-          Add your comment
+            Add your comment
           </Button>
-          </div>
+        </div>
       </Form>
     </div>
   );
