@@ -8,7 +8,7 @@ function ShowCard(props) {
       <Link className="card-link" to={`/list-shows/${props.eachShow["#IMDB_ID"]}`}>
         <div key={props.eachShow["#IMDB_ID"]}>
           <Card.Img
-            style={{ height: "18rem" }}
+            style={{ maxHeight: "17rem", objectFit: "cover" }}
             variant="top"
             src={props.eachShow["#IMG_POSTER"]}
             alt={props.eachShow["#TITLE"]}
