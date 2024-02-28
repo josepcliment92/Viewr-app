@@ -4,18 +4,17 @@ import { useNavigate } from "react-router-dom";
 import API_URL from "../utils/api";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import ReviewForm from "../components/ReviewForm";
 import Button from "react-bootstrap/esm/Button";
 import LOCAL_URL from "../utils/databaseLocal";
-import EditReviewForm from "../components/EditReviewForm";
+import ReviewCard from "../components/ReviewCard";
+import DetailsCard from "../components/DetailsCard";
 
 function DetailsShow() {
   const [show, setShow] = useState([]);
   const [review, setReview] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
-  const [isUpdateFormShowing, setIsUpdateFormShowing] = useState(false);
   const [isAddFormShowing, setIsAddFormShowing] = useState(false);
 
   useEffect(() => {
@@ -42,21 +41,6 @@ function DetailsShow() {
     }
   }
 
-  const handleDelete = (e) => {
-    axios
-      .delete(`${LOCAL_URL}/reviews/${e}`)
-      .then(() => {
-        getDataFromServer();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleToggleUpdateForm = () => {
-    setIsUpdateFormShowing(!isUpdateFormShowing);
-  };
-
   const handleToggleAddForm = () => {
     setIsAddFormShowing(!isAddFormShowing);
   };
@@ -67,85 +51,25 @@ function DetailsShow() {
 
   return (
     <div>
-      <div>
-        <img src={show["#IMG_POSTER"]} alt={show["#TITLE"]} width="200px" />
-        <h2>{show["#TITLE"]}</h2>
-        <hr />
-        <p>
-          <strong>AKA:</strong> {show["#AKA"]}
-        </p>
-        <p>
-          <strong>Year:</strong> {show["#YEAR"]}{" "}
-        </p>
-        <p>
-          <strong>Actors:</strong> {show["#ACTORS"]}
-        </p>
-        <p>
-          <strong>Rank in IMDb:</strong> {show["#RANK"]}
-        </p>
-        <Link to={show["#IMDB_URL"]} target="_blank">
-          <Button variant="primary" style={{ margin: "25px" }}>
-            More info
-          </Button>
-        </Link>
-        <hr />
-      </div>
-      
+      <DetailsCard show={show}/>
       <div className="d-grid gap-2">
-        <Button variant="success" size="lg" onClick={handleToggleAddForm} >Did you like the show? Tell us!</Button>
+        <Button variant="success" size="lg" onClick={handleToggleAddForm}>
+          Did you like the show? Tell us!
+        </Button>
         {isAddFormShowing === true ? (
-        <ReviewForm 
-          showId={show["#IMDB_ID"]}
-          showName={show["#TITLE"]}
-          showImage={show["#IMG_POSTER"]}
-          getDataFromServer={getDataFromServer}
-          handleToggleAddForm={handleToggleAddForm}
-        />
+          <ReviewForm
+            showId={show["#IMDB_ID"]}
+            showName={show["#TITLE"]}
+            showImage={show["#IMG_POSTER"]}
+            getDataFromServer={getDataFromServer}
+            handleToggleAddForm={handleToggleAddForm}
+          />
         ) : null}
       </div>
       <div>
         <hr />
         {review.map((eachReview) => {
-          return (
-            <div key={eachReview.id}>
-              <h1>
-                <strong>Rating:</strong>
-                <br />
-                {eachReview.rating}
-              </h1>
-              <h3>
-                <strong>Review:</strong>
-                <br />
-                {eachReview.review}
-              </h3>
-              <h3 style={{ marginBottom: "50px" }}>
-                <strong>Username:</strong>
-                <br />
-                {eachReview.username}
-              </h3>
-              <div className="d-grid gap-2">
-                <Button style={{color: "white"}} variant="warning" size="lg" onClick={handleToggleUpdateForm}>
-                  Edit
-                </Button>
-                {isUpdateFormShowing === true ? (
-                <EditReviewForm
-                  review={eachReview}
-                  setReview={setReview}
-                  getDataFromServer={getDataFromServer}
-                  handleToggleUpdateForm={handleToggleUpdateForm}
-                />
-                ) : null}
-                <Button
-                  variant="danger"
-                  size="lg"
-                  onClick={(e) => handleDelete(eachReview.id)}
-                >
-                  Delete
-                </Button>
-              </div>
-              <hr />
-            </div>
-          );
+          return <ReviewCard eachReview={eachReview} key={eachReview.id} getDataFromServer={getDataFromServer} setReview={setReview} review={review}/>;
         })}
       </div>
     </div>
