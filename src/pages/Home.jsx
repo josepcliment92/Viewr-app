@@ -1,90 +1,31 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import API_URL from "../utils/api";
+import LOCAL_URL from "../utils/databaseLocal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ShowCard from "../components/ShowCard";
-import { TailSpin } from "react-loader-spinner";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 function Home() {
-  const [shows, setShows] = useState(null);
+  const [lastReviews, setLastReviews] = useState(null);
 
   const navigate = useNavigate();
 
-  const lettersNumbers = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-  ];
-
-  const randomIndex = Math.floor(Math.random() * lettersNumbers.length);
-  const randomResult = lettersNumbers[randomIndex];
-
   useEffect(() => {
     axios
-      .get(`${API_URL}/?q=${randomResult}`) // filtrar randomResult por ranking IMDb
-      .then((response) => {
-        setShows(response.data.description);
+      .get(`${LOCAL_URL}/reviews`)
+      .then((res) => {
+        const reviews = res.data;
+        reviews.sort((a, b) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+          return dateB - dateA;
+        });
+        const lastReviews = reviews.slice(0, 10);
+        setLastReviews(lastReviews);
       })
       .catch((error) => {
         navigate("*");
@@ -92,18 +33,14 @@ function Home() {
   }, []);
 
   if (shows === null) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <TailSpin color={"white"} size={500} />
-      </div>
-    );
+    return <h3> Cargando... </h3>; // incluir más adelante un Spinner
   }
 
   return (
     <div className="card-home-list-shows">
       {shows.map((eachShow) => {
         return (
-          <div>
+          <div >
             <ShowCard eachShow={eachShow} />
           </div>
         );
