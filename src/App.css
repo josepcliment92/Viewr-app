@@ -6,6 +6,15 @@
   background-color: #2b3035;
 }
 
+.btn-edit:hover {
+  color: white !important;
+}
+
+.add-review-card {
+  background-color: #2b3035 !important;
+  border: 0px;
+}
+
 .card-title {
   color: black !important;
 }

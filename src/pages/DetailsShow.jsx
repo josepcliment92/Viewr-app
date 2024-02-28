@@ -9,6 +9,7 @@ import Button from "react-bootstrap/esm/Button";
 import LOCAL_URL from "../utils/databaseLocal";
 import ReviewCard from "../components/ReviewCard";
 import DetailsCard from "../components/DetailsCard";
+import Card from "react-bootstrap/Card";
 
 function DetailsShow() {
   const [show, setShow] = useState([]);
@@ -51,25 +52,48 @@ function DetailsShow() {
 
   return (
     <div>
-      <DetailsCard show={show}/>
-      <div className="d-grid gap-2">
-        <Button variant="success" size="lg" onClick={handleToggleAddForm}>
-          Did you like the show? Tell us!
-        </Button>
-        {isAddFormShowing === true ? (
-          <ReviewForm
-            showId={show["#IMDB_ID"]}
-            showName={show["#TITLE"]}
-            showImage={show["#IMG_POSTER"]}
-            getDataFromServer={getDataFromServer}
-            handleToggleAddForm={handleToggleAddForm}
-          />
-        ) : null}
+      <DetailsCard show={show} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Card
+          bg="dark"
+          text="white"
+          style={{ width: "18rem" }}
+          className="add-review-card"
+        >
+          <Card.Body className="d-grid gap-2">
+            <Button variant="success" size="lg" onClick={handleToggleAddForm}>
+              Did you like the show? Tell us!
+            </Button>
+            {isAddFormShowing === true ? (
+              <ReviewForm
+                showId={show["#IMDB_ID"]}
+                showName={show["#TITLE"]}
+                showImage={show["#IMG_POSTER"]}
+                getDataFromServer={getDataFromServer}
+                handleToggleAddForm={handleToggleAddForm}
+              />
+            ) : null}
+          </Card.Body>
+        </Card>
       </div>
       <div>
         <hr />
         {review.map((eachReview) => {
-          return <ReviewCard eachReview={eachReview} key={eachReview.id} getDataFromServer={getDataFromServer} setReview={setReview} review={review}/>;
+          return (
+            <ReviewCard
+              eachReview={eachReview}
+              key={eachReview.id}
+              getDataFromServer={getDataFromServer}
+              setReview={setReview}
+              review={review}
+            />
+          );
         })}
       </div>
     </div>
