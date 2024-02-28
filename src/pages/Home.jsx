@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import lastReviewsLogo from "../assets/img/last-reviews-logo.png";
 import LastReviews from "../components/LastReviews";
+import { TailSpin } from "react-loader-spinner";
 
 function Home() {
   const [lastReviews, setLastReviews] = useState(null);
@@ -20,7 +21,7 @@ function Home() {
     axios
       .get(`${LOCAL_URL}/reviews`)
       .then((res) => {
-        const reviews = res.data;
+        const reviews = [...res.data];
         reviews.sort((a, b) => {
           const dateA = new Date(a.date).getTime();
           const dateB = new Date(b.date).getTime();
@@ -35,7 +36,9 @@ function Home() {
   }, []);
 
   if (lastReviews === null) {
-    return <h3> Cargando... </h3>; // incluir más adelante un Spinner
+    return (<div style={{ display: "flex", justifyContent: "center" }}>
+    <TailSpin color={"white"} size={500} />
+  </div>)
   }
 
   return (

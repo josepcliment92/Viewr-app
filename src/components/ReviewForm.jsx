@@ -15,9 +15,10 @@ function ReviewForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const currentDate = new Date();
-    const date = `Date: ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}, 
-    Time: ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+    const currentDate = new Date().toISOString();
+
+
+
     const newComent = {
       rating: rating,
       review: comment,
@@ -25,7 +26,7 @@ function ReviewForm(props) {
       showID: props.showId,
       showTitle: props.showName,
       showImage: props.showImage,
-      date: date,
+      date: currentDate,
     };
 
     axios

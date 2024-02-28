@@ -59,7 +59,6 @@ function SearchBar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //setSpinner(false);
     navigate(`/list-shows/${eachResult["#IMDB_ID"]}`);
   };
 

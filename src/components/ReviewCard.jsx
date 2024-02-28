@@ -34,6 +34,9 @@ function ReviewCard(props) {
     setIsUpdateFormShowing(!isUpdateFormShowing);
   };
 
+  // const date = `Date: ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}, 
+  // Time: ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
   return (
     <div
       key={eachReview.id}
@@ -84,7 +87,7 @@ function ReviewCard(props) {
             </Button>
           </div>
         </Card.Body>
-        <Card.Footer>{eachReview.date}</Card.Footer>
+        <Card.Footer>{new Date(eachReview.date).toDateString()}</Card.Footer>
       </Card>
     </div>
   );
