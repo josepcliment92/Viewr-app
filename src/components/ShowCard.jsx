@@ -15,7 +15,7 @@ function ShowCard(props) {
             width="120px"
           />
           <Card.Body style={{height: "7rem", display: "flex", flexDirection: "column", justifyContent: "center"}}>
-            <Card.Title className="card-title">{props.eachShow["#AKA"]}</Card.Title>{" "}
+            <Card.Title className="card-title-list">{props.eachShow["#AKA"]}</Card.Title>{" "}
           </Card.Body>
         </div>
       </Link>

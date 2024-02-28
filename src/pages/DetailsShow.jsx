@@ -73,7 +73,7 @@ function DetailsShow() {
             {isAddFormShowing === true ? (
               <ReviewForm
                 showId={show["#IMDB_ID"]}
-                showName={show["#TITLE"]}
+                showName={show["#AKA"]}
                 showImage={show["#IMG_POSTER"]}
                 getDataFromServer={getDataFromServer}
                 handleToggleAddForm={handleToggleAddForm}
