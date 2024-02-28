@@ -3,9 +3,11 @@ import Card from "react-bootstrap/Card";
 
 
 function LastReviews(props) {
-    
   const review = props.review;
-
+  const date = new Date(review.date)
+  const dateToShow = `Date: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}, 
+  Time: ${date.getHours()}:${date.getMinutes()}`;
+  
   return (
       <div>
         <Link
@@ -67,7 +69,7 @@ function LastReviews(props) {
                   <strong>Review: </strong> {review.review}
                 </Card.Text>
               </Card.Body>
-              <Card.Footer>{review.date}</Card.Footer>
+              <Card.Footer>{dateToShow}</Card.Footer>
             </Card>
           </div>
         </Link>

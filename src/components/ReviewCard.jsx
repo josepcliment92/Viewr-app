@@ -33,9 +33,9 @@ function ReviewCard(props) {
   const handleToggleUpdateForm = () => {
     setIsUpdateFormShowing(!isUpdateFormShowing);
   };
-
-  // const date = `Date: ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}, 
-  // Time: ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+  const date = new Date(eachReview.date)
+  const dateToShow = `Date: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}, 
+  Time: ${date.getHours()}:${date.getMinutes()}`;
 
   return (
     <div
@@ -87,7 +87,7 @@ function ReviewCard(props) {
             </Button>
           </div>
         </Card.Body>
-        <Card.Footer>{new Date(eachReview.date).toDateString()}</Card.Footer>
+        <Card.Footer>{dateToShow}</Card.Footer>
       </Card>
     </div>
   );
