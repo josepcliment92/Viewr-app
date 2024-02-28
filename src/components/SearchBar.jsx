@@ -116,9 +116,9 @@ function SearchBar() {
                     onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
                     style={{textDecoration: "none"}}
                   >
-                    <Card style={{ width: "4rem", margin: "0.5em"}}>
-                      <Card.Img style={{height: "6em" }}variant="top" src={eachResult["#IMG_POSTER"]}  />
-                      <Card.Body style={{height: "8rem", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                    <Card style={{ width: "8rem", margin: "0.5em"}}>
+                      <Card.Img style={{maxHeight: "10rem", objectFit: "cover"}}variant="top" src={eachResult["#IMG_POSTER"]}  />
+                      <Card.Body style={{height: "4rem", display: "flex", flexDirection: "column", justifyContent: "center"}}>
                       <Card.Title className="card-title-search-bar">{eachResult["#TITLE"]}</Card.Title>
                       </Card.Body>
                     </Card>
