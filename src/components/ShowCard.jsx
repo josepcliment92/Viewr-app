@@ -9,6 +9,7 @@ function ShowCard(props) {
         justifyContent: "center",
         flexWrap: "wrap",
         minWidth: "360px",
+        maxWidth: "360px",
         margin: "5px",
         borderRadius: "10px",
       }}
