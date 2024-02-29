@@ -83,11 +83,15 @@ function SearchBar() {
         bg="dark"
         data-bs-theme="dark"
       >
-        <Offcanvas.Header>
-          <Offcanvas.Title>
-            <img src={searchLogo} alt="search-logo" height="70px" />
-          </Offcanvas.Title>
-        </Offcanvas.Header>
+        <Offcanvas.Title>
+          <img
+            src={searchLogo}
+            alt="search-logo"
+            height="70px"
+            style={{ margin: "5px", padding: "0px" }}
+          />
+        </Offcanvas.Title>
+
         <Offcanvas.Body>
           <Form inline onSubmit={handleSubmit}>
             <Row>

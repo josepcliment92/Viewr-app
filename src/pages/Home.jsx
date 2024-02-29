@@ -39,16 +39,18 @@ function Home() {
 
   return (
     <div>
-      <img
-        src={lastReviewsLogo}
-        alt="last-reviews-logo"
-        style={{
-          maxWidth: "100%",
-          height: "auto",
-          display: "block",
-          margin: "0 auto",
-        }}
-      />
+      <div style={{marginBottom: "20px"}}>
+        <img
+          src={lastReviewsLogo}
+          alt="last-reviews-logo"
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+            display: "block",
+            margin: "0 auto",
+          }}
+        />
+      </div>
       <div className="card-home-list-shows">
         {lastReviews.map((eachReview) => {
           return (
