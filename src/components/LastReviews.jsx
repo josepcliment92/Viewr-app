@@ -13,7 +13,7 @@ function LastReviews(props) {
     <div
       style={{
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "center",
         flexWrap: "wrap",
         minWidth: "200px",
         backgroundColor: "white",
@@ -34,7 +34,7 @@ function LastReviews(props) {
           flexDirection: "column",
         }}
       >
-        <Card style={{ flex: 1 }}>
+        <Card>
           <div style={{ height: "300px", position: "relative" }}>
             <Card.Img
               style={{
