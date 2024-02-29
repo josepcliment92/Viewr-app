@@ -7,58 +7,58 @@ function DetailsCard(props) {
   return (
     <div>
       <Card style={{ height: "900px", width: "600px" }}>
-          <Card.Img
+        <Card.Img
+          style={{
+            width: "100%",
+            maxHeight: "600px",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "10px",
+          }}
+          variant="top"
+          src={show["#IMG_POSTER"]}
+          alt={show["#TITLE"]}
+        />
+
+        <Card.Body
+          style={{
+            maxHeight: "300px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Card.Title
             style={{
-              width: "100%",
-              maxHeight: "600px",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "10px",
-            }}
-            variant="top"
-            src={show["#IMG_POSTER"]}
-            alt={show["#TITLE"]}
-          />
-  
-          <Card.Body
-            style={{
-              maxHeight: "300px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
+              color: "black",
+              fontSize: "24px",
+              lineHeight: "20px",
+              textAlign: "center",
             }}
           >
-            <Card.Title
-              style={{
-                color: "black",
-                fontSize: "24px",
-                lineHeight: "20px",
-                textAlign: "center",
-              }}
-            >
-              {show["#TITLE"]}
-            </Card.Title>
-            <Card.Text>
-              <p>
-                <strong>AKA:</strong> {show["#AKA"]}
-              </p>
-              <p>
-                <strong>Year:</strong> {show["#YEAR"]}
-              </p>
-              <p>
-                <strong>Actors:</strong> {show["#ACTORS"]}
-              </p>
-              <p>
-                <strong>Rank in IMDb:</strong> {show["#RANK"]}
-              </p>
-              <Link to={show["#IMDB_URL"]} target="_blank">
-                <Button variant="primary">More info</Button>
-              </Link>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-  </div>
+            {show["#TITLE"]}
+          </Card.Title>
+          <Card.Text>
+            <strong>AKA:</strong> {show["#AKA"]}
+          </Card.Text>
+          <Card.Text>
+            <strong>Year:</strong> {show["#YEAR"]}
+          </Card.Text>
+          <Card.Text>
+            <strong>Actors:</strong> {show["#ACTORS"]}
+          </Card.Text>
+          <Card.Text>
+            <strong>Rank in IMDb:</strong> {show["#RANK"]}
+          </Card.Text>
+          <Card.Text>
+            <Link to={show["#IMDB_URL"]} target="_blank">
+              <Button variant="primary">More info</Button>
+            </Link>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 
