@@ -8,7 +8,7 @@ function ShowCard(props) {
         display: "flex",
         justifyContent: "center",
         flexWrap: "wrap",
-        minWidth: "200px",
+        minWidth: "360px",
         margin: "5px",
         borderRadius: "10px",
       }}
@@ -18,16 +18,16 @@ function ShowCard(props) {
         to={`/list-shows/${props.eachShow["#IMDB_ID"]}`}
         style={{
           textDecoration: "none",
-          width: "200px",
+          minWidth: "360px",
           maxWidth: "100%",
-          maxHeight: "400px",
+          minHeight: "680px",
           margin: "5px",
           display: "flex",
           flexDirection: "column",
         }}
       >
         <Card>
-          <div style={{ height: "300px", position: "relative" }}>
+          <div style={{ height: "440px", position: "relative" }}>
             <Card.Img
               style={{
                 width: "100%",
@@ -38,12 +38,11 @@ function ShowCard(props) {
               variant="top"
               src={props.eachShow["#IMG_POSTER"]}
               alt={props.eachShow["#TITLE"]}
-              width="120px"
             />
           </div>
           <Card.Body
             style={{
-              height: "100px",
+              height: "200px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",

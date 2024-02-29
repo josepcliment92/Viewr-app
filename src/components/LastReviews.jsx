@@ -15,117 +15,125 @@ function LastReviews(props) {
         display: "flex",
         justifyContent: "center",
         flexWrap: "wrap",
-        minWidth: "200px",
-        backgroundColor: "white",
+        minWidth: "360px",
         margin: "5px",
+        backgroundColor: "white",
         borderRadius: "10px",
       }}
     >
-      <Link
-        to={`/list-shows/${review.showID}`}
-        onClick={(e) => handleSubmit(review.showID)}
+      <div>
+        <Link
+          to={`/list-shows/${review.showID}`}
+          onClick={(e) => handleSubmit(review.showID)}
+          style={{
+            textDecoration: "none",
+            minWidth: "360px",
+            maxWidth: "360px",
+            minHeight: "640px",
+            margin: "5px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Card>
+            <div style={{ height: "540px", position: "relative" }}>
+              <Card.Img
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+                variant="top"
+                src={review.showImage}
+              />
+            </div>
+            <Card.Body
+              style={{
+                height: "100px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Card.Title
+                style={{
+                  color: "black",
+                  fontSize: "16px",
+                  lineHeight: "20px",
+                  textAlign: "center",
+                }}
+              >
+                {review.showTitle}
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        </Link>
+      </div>
+      <div
         style={{
           textDecoration: "none",
-          width: "200px",
-          maxWidth: "100%",
-          maxHeight: "400px",
-          margin: "5px",
+          minWidth: "360px",
+          maxWidth: "360px",
+          minHeight: "640px",
           display: "flex",
+          margin: "5px",
           flexDirection: "column",
         }}
       >
-        <Card>
-          <div style={{ height: "300px", position: "relative" }}>
-            <Card.Img
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "10px",
-              }}
-              variant="top"
-              src={review.showImage}
-            />
-          </div>
+        <Card bg="secondary">
+          <Card.Header
+            style={{
+              height: "120px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {review.username}
+          </Card.Header>
           <Card.Body
             style={{
-              height: "100px",
+              height: "400px",
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
               alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Card.Title
               style={{
-                color: "black",
-                fontSize: "16px",
-                lineHeight: "20px",
                 textAlign: "center",
+                height: "100px",
               }}
             >
-              {review.showTitle}
+              <strong>Rating: </strong>
+              {review.rating}
             </Card.Title>
+            <Card.Text
+              style={{
+                height: "300px",
+                textAlign: "center",
+                overflowY: "auto",
+              }}
+            >
+              <strong>Review: </strong> {review.review}
+            </Card.Text>
           </Card.Body>
-        </Card>
-      </Link>
-      <Card
-        bg="secondary"
-        style={{
-          width: "200px",
-          maxWidth: "100%",
-          maxHeight: "400px",
-          margin: "5px",
-          color: "white",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Card.Header
-          style={{
-            height: "40px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {review.username}
-        </Card.Header>
-        <Card.Body
-          style={{
-            height: "150px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Card.Title style={{ marginBottom: "5px", textAlign: "center" }}>
-            <strong>Rating: </strong>
-            {review.rating}
-          </Card.Title>
-          <Card.Text
+          <Card.Footer
             style={{
-              marginBottom: "5px",
-              textAlign: "center",
-              overflowY: "auto",
+              height: "120px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <strong>Review: </strong> {review.review}
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer
-          style={{
-            height: "60px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {dateToShow}
-          <br />
-          {timeToShow}
-        </Card.Footer>
-      </Card>
+            {dateToShow}
+            <br />
+            {timeToShow}
+          </Card.Footer>
+        </Card>
+      </div>
     </div>
   );
 }

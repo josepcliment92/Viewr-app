@@ -13,7 +13,7 @@ import Error from "./pages/Error";
 
 function App() {
   return (
-    <div style={{minWidth: "400px"}}>
+    <div style={{minWidth: "360px"}}>
      <MainNavBar />
 
       <div>
