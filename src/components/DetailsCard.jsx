@@ -6,7 +6,7 @@ function DetailsCard(props) {
   const show = props.show;
   return (
     <div>
-      <Card style={{ height: "900px", width: "600px" }}>
+      <Card style={{ height: "900px", width: "360px" }}>
         <Card.Img
           style={{
             width: "100%",

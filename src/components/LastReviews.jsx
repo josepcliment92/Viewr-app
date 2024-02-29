@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import emptyStar from "../assets/img/star-empty-logo.png";
+import filledStar from "../assets/img/star-fill-logo.png";
 
 function LastReviews(props) {
   const review = props.review;
@@ -8,6 +10,39 @@ function LastReviews(props) {
     date.getMonth() + 1
   }/${date.getFullYear()},`;
   const timeToShow = `Time: ${date.getHours()}:${date.getMinutes()}`;
+
+  function ratingStars(rating) {
+    const starsArray = [];
+    for (let i = 0; i < rating; i++) {
+      starsArray.push(
+        <img
+          key={i}
+          src={filledStar}
+          alt="filled-star"
+          style={{
+            maxWidth: "10%",
+            height: "auto",
+            margin: "0 auto",
+          }}
+        />
+      );
+    }
+    for (let i = rating; i < 5; i++) {
+      starsArray.push(
+        <img
+          key={i}
+          src={emptyStar}
+          alt="empty-star"
+          style={{
+            maxWidth: "10%",
+            height: "auto",
+            margin: "0 auto",
+          }}
+        />
+      );
+    }
+    return <div>{starsArray}</div>;
+  }
 
   return (
     <div
@@ -21,12 +56,15 @@ function LastReviews(props) {
         borderRadius: "10px",
       }}
     >
-      <div>
-        <Link
-          to={`/list-shows/${review.showID}`}
-          onClick={(e) => handleSubmit(review.showID)}
+      <Link
+        to={`/list-shows/${review.showID}`}
+        onClick={(e) => handleSubmit(review.showID)}
+        style={{textDecoration: "none", display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",}}
+      >
+        <div
           style={{
-            textDecoration: "none",
             minWidth: "360px",
             maxWidth: "360px",
             minHeight: "640px",
@@ -68,72 +106,71 @@ function LastReviews(props) {
               </Card.Title>
             </Card.Body>
           </Card>
-        </Link>
-      </div>
-      <div
-        style={{
-          textDecoration: "none",
-          minWidth: "360px",
-          maxWidth: "360px",
-          minHeight: "640px",
-          display: "flex",
-          margin: "5px",
-          flexDirection: "column",
-        }}
-      >
-        <Card bg="secondary">
-          <Card.Header
-            style={{
-              height: "120px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {review.username}
-          </Card.Header>
-          <Card.Body
-            style={{
-              height: "400px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Card.Title
+        </div>
+        <div
+          style={{
+            textDecoration: "none",
+            minWidth: "360px",
+            maxWidth: "360px",
+            minHeight: "640px",
+            display: "flex",
+            margin: "5px",
+            flexDirection: "column",
+          }}
+        >
+          <Card bg="secondary">
+            <Card.Header
               style={{
-                textAlign: "center",
-                height: "100px",
+                height: "120px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <strong>Rating: </strong>
-              {review.rating}
-            </Card.Title>
-            <Card.Text
+              {review.username}
+            </Card.Header>
+            <Card.Body
               style={{
-                height: "300px",
-                textAlign: "center",
-                overflowY: "auto",
+                height: "400px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <strong>Review: </strong> {review.review}
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer
-            style={{
-              height: "120px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {dateToShow}
-            <br />
-            {timeToShow}
-          </Card.Footer>
-        </Card>
-      </div>
+              <Card.Text
+                style={{
+                  textAlign: "center",
+                  height: "150px",
+                }}
+              >
+                {ratingStars(review.rating)}
+              </Card.Text>
+              <Card.Text
+                style={{
+                  height: "150px",
+                  textAlign: "center",
+                  overflowY: "auto",
+                }}
+              >
+                <strong>Review: </strong> {review.review}
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer
+              style={{
+                height: "120px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {dateToShow}
+              <br />
+              {timeToShow}
+            </Card.Footer>
+          </Card>
+        </div>
+      </Link>
     </div>
   );
 }
