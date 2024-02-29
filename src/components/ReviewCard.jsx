@@ -7,7 +7,6 @@ import Card from "react-bootstrap/Card";
 
 function ReviewCard(props) {
   const eachReview = props.eachReview;
-  console.log(eachReview.date)
   const variantsArr = [
     "primary",
     "secondary",
@@ -33,8 +32,10 @@ function ReviewCard(props) {
   const handleToggleUpdateForm = () => {
     setIsUpdateFormShowing(!isUpdateFormShowing);
   };
-  const date = new Date(eachReview.date)
-  const dateToShow = `Date: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}, 
+  const date = new Date(eachReview.date);
+  const dateToShow = `Date: ${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}, 
   Time: ${date.getHours()}:${date.getMinutes()}`;
 
   return (

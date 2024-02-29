@@ -17,8 +17,6 @@ function ReviewForm(props) {
     e.preventDefault();
     const currentDate = new Date().toISOString();
 
-
-
     const newComent = {
       rating: rating,
       review: comment,

@@ -1,13 +1,7 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import LOCAL_URL from "../utils/databaseLocal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ShowCard from "../components/ShowCard";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import lastReviewsLogo from "../assets/img/last-reviews-logo.png";
 import LastReviews from "../components/LastReviews";
 import { TailSpin } from "react-loader-spinner";
@@ -36,23 +30,27 @@ function Home() {
   }, []);
 
   if (lastReviews === null) {
-    return (<div style={{ display: "flex", justifyContent: "center" }}>
-    <TailSpin color={"white"} size={500} />
-  </div>)
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <TailSpin color={"white"} size={500} />
+      </div>
+    );
   }
 
   return (
     <div>
-      <img
-        src={lastReviewsLogo}
-        alt="last-reviews-logo"
-        style={{
-          maxWidth: "100%",
-          height: "auto",
-          display: "block",
-          margin: "0 auto",
-        }}
-      />
+      <div style={{marginBottom: "20px"}}>
+        <img
+          src={lastReviewsLogo}
+          alt="last-reviews-logo"
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+            display: "block",
+            margin: "0 auto",
+          }}
+        />
+      </div>
       <div className="card-home-list-shows">
         {lastReviews.map((eachReview) => {
           return (

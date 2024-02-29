@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API_URL from "../utils/api";
@@ -39,7 +38,7 @@ function ListShows() {
 
   return (
     <div>
-      <div>
+      <div style={{marginBottom: "50px"}}>
         <img
           src={allShowsLogo}
           alt="all-shows-logo"
