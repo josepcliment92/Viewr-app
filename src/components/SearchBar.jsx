@@ -25,19 +25,16 @@ function SearchBar() {
     setSpinner(true);
     if (searchTimeout) {
       clearTimeout(searchTimeout);
-      
     }
     setSearch(
       setTimeout(() => {}),
       1000
-      
     );
-    
   };
 
   const [showList, setShowList] = useState([]);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const delaySearch = setTimeout(() => {
       if (search.trim() !== "") {
@@ -51,10 +48,11 @@ function SearchBar() {
             navigate("*");
           });
       } else {
-        setShowList([]);
+        setShowList([])
+        setSpinner(false);
       }
     }, 1000);
-    return () => clearTimeout(delaySearch); 
+    return () => clearTimeout(delaySearch);
   }, [search]);
 
   const handleSubmit = (event) => {
@@ -99,17 +97,16 @@ function SearchBar() {
                   type="text"
                   placeholder="Search Your Show"
                   className=" mr-sm-2"
-                  value={search} 
+                  value={search}
                   onChange={handleSearch}
                 />
-               
               </Col>
               <Col xs="auto">
-                 {spinner && (
+                {spinner && (
                   <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                   </div>
-                ) }
+                )}
               </Col>
             </Row>
           </Form>
