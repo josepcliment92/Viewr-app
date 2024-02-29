@@ -52,3 +52,7 @@
 .about-content {
   text-align: left;
 }
+
+.selected-letter {
+  background-color: green;
+}

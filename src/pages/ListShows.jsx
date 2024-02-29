@@ -15,18 +15,19 @@ function ListShows() {
   const navigate = useNavigate();
 
   const randomIndex = Math.floor(Math.random() * lettersArr.length);
-  const initialRandomResult = lettersArr[randomIndex];
-  const [randomResult, setRandomResult] = useState(initialRandomResult);
+  const initialRandomLetter = lettersArr[randomIndex];
+  const [randomLetter, setRandomLetter] = useState(initialRandomLetter);
+
   useEffect(() => {
     axios
-      .get(`${API_URL}/?q=${randomResult}`)
+      .get(`${API_URL}/?q=${randomLetter}`)
       .then((response) => {
         setShows(response.data.description);
       })
       .catch((error) => {
         navigate("*");
       });
-  }, []);
+  }, [randomLetter]);
 
   if (shows === null) {
     return (
@@ -50,8 +51,9 @@ function ListShows() {
           }}
         />
         <FilterShows
-          setRandomResult={setRandomResult}
+          setRandomLetter={setRandomLetter}
           lettersArr={lettersArr}
+          randomLetter={randomLetter}
         />
       </div>
       <div className="card-home-list-shows">
