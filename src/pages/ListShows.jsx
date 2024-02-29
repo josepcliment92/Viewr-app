@@ -38,7 +38,7 @@ function ListShows() {
 
   return (
     <div>
-      <div style={{marginBottom: "50px", minWidth: "400px"}}>
+      <div style={{marginBottom: "50px"}}>
         <img
           src={allShowsLogo}
           alt="all-shows-logo"
