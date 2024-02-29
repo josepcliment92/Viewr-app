@@ -54,6 +54,7 @@ function ListShows() {
           setRandomLetter={setRandomLetter}
           lettersArr={lettersArr}
           randomLetter={randomLetter}
+          setShows={setShows}
         />
       </div>
       <div className="card-home-list-shows">

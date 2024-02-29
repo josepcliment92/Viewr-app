@@ -1,8 +1,12 @@
 import Button from "react-bootstrap/Button";
 
 function FilterShows(props) {
+
   const handleClick = (letter) => {
-    props.setRandomLetter(letter);
+    props.setShows(null)
+    setTimeout(() => {
+      props.setRandomLetter(letter);
+    }, 1000);
   };
 
   return (
