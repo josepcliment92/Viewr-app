@@ -4,6 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import LOCAL_URL from "../utils/databaseLocal";
 import Card from "react-bootstrap/Card";
+import emptyStar from "../assets/img/star-empty-logo.png";
+import filledStar from "../assets/img/star-fill-logo.png";
 
 function ReviewCard(props) {
   const eachReview = props.eachReview;
@@ -12,7 +14,6 @@ function ReviewCard(props) {
     "secondary",
     "success",
     "info",
-    "light",
     "dark",
   ];
   const randomVariant =
@@ -38,6 +39,39 @@ function ReviewCard(props) {
   }/${date.getFullYear()}, 
   Time: ${date.getHours()}:${date.getMinutes()}`;
 
+  function ratingStars(rating) {
+    const starsArray = [];
+    for (let i = 0; i < rating; i++) {
+      starsArray.push(
+        <img
+          key={i}
+          src={filledStar}
+          alt="filled-star"
+          style={{
+            maxWidth: "10%",
+            height: "auto",
+            margin: "0 auto",
+          }}
+        />
+      );
+    }
+    for (let i = rating; i < 5; i++) {
+      starsArray.push(
+        <img
+          key={i}
+          src={emptyStar}
+          alt="empty-star"
+          style={{
+            maxWidth: "10%",
+            height: "auto",
+            margin: "0 auto",
+          }}
+        />
+      );
+    }
+    return <div>{starsArray}</div>;
+  }
+
   return (
     <div
       key={eachReview.id}
@@ -55,10 +89,7 @@ function ReviewCard(props) {
       >
         <Card.Header>{eachReview.username}</Card.Header>
         <Card.Body>
-          <Card.Title>
-            <strong>Rating: </strong>
-            {eachReview.rating}
-          </Card.Title>
+          <Card.Title style={{display: "flex", flexDirection: "row"}}>{ratingStars(eachReview.rating)}</Card.Title>
           <Card.Text>
             <strong>Review: </strong> {eachReview.review}
           </Card.Text>
