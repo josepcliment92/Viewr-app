@@ -9,6 +9,7 @@ import ReviewCard from "../components/ReviewCard";
 import DetailsCard from "../components/DetailsCard";
 import Card from "react-bootstrap/Card";
 import { TailSpin } from "react-loader-spinner";
+import showDetailsLogo from "../assets/img/show-details-logo.png"
 
 function DetailsShow() {
   const [show, setShow] = useState(null);
@@ -57,15 +58,27 @@ function DetailsShow() {
     <div style={{
       display: "flex",
       flexDirection: "column",
-      alignItems: "center", // Centra los elementos horizontalmente
-      minHeight: "100vh", // Establece una altura mínima para ocupar toda la pantalla
+      alignItems: "center", 
+      minHeight: "100vh", 
     }}>
+      <div style={{marginBottom: "20px"}}>
+        <img
+          src={showDetailsLogo}
+          alt="show-details-logo"
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+            display: "block",
+            margin: "0 auto",
+          }}
+        />
+      </div>
       <DetailsCard show={show} />
   
       <div
         style={{
           marginTop: "20px",
-          textAlign: "center", // Alinea el contenido al centro
+          textAlign: "center",
         }}
       >
         <Card
