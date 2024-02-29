@@ -54,13 +54,18 @@ function DetailsShow() {
   }
 
   return (
-    <div>
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center", // Centra los elementos horizontalmente
+      minHeight: "100vh", // Establece una altura mínima para ocupar toda la pantalla
+    }}>
       <DetailsCard show={show} />
+  
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          marginTop: "20px",
+          textAlign: "center", // Alinea el contenido al centro
         }}
       >
         <Card
@@ -73,7 +78,7 @@ function DetailsShow() {
             <Button variant="success" size="lg" onClick={handleToggleAddForm}>
               Did you like the show? Tell us!
             </Button>
-            {isAddFormShowing === true ? (
+            {isAddFormShowing && (
               <ReviewForm
                 showId={show["#IMDB_ID"]}
                 showName={show["#AKA"]}
@@ -81,25 +86,24 @@ function DetailsShow() {
                 getDataFromServer={getDataFromServer}
                 handleToggleAddForm={handleToggleAddForm}
               />
-            ) : null}
+            )}
           </Card.Body>
         </Card>
       </div>
-      <div>
+  
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
         <hr />
-        {review.map((eachReview) => {
-          return (
-            <ReviewCard
-              eachReview={eachReview}
-              key={eachReview.id}
-              getDataFromServer={getDataFromServer}
-              setReview={setReview}
-              review={review}
-            />
-          );
-        })}
+        {review.map((eachReview) => (
+          <ReviewCard
+            eachReview={eachReview}
+            key={eachReview.id}
+            getDataFromServer={getDataFromServer}
+            setReview={setReview}
+            review={review}
+          />
+        ))}
       </div>
-    </div>
+  </div>
   );
 }
 
