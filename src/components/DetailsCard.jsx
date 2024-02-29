@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
 
 function DetailsCard(props) {
-const show = props.show
+  const show = props.show;
   return (
     <div>
-        <div>
+      <div>
         <img src={show["#IMG_POSTER"]} alt={show["#TITLE"]} width="200px" />
         <h2>{show["#TITLE"]}</h2>
         <hr />
@@ -29,7 +29,7 @@ const show = props.show
         <hr />
       </div>
     </div>
-  )
+  );
 }
 
-export default DetailsCard
+export default DetailsCard;

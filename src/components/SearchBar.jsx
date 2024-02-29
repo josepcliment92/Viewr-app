@@ -8,9 +8,8 @@ import Card from "react-bootstrap/Card";
 import lupaLogo from "../assets/img/logo-lupa.png";
 import searchLogo from "../assets/img/search-logo.png";
 import API_URL from "../utils/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [show, setShow] = useState(false);
@@ -34,7 +33,7 @@ function SearchBar() {
 
   const [showList, setShowList] = useState([]);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const delaySearch = setTimeout(() => {
       if (search.trim() !== "") {
@@ -48,7 +47,7 @@ function SearchBar() {
             navigate("*");
           });
       } else {
-        setShowList([])
+        setShowList([]);
         setSpinner(false);
       }
     }, 1000);
@@ -115,29 +114,58 @@ function SearchBar() {
               return (
                 <div
                   onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
-                  style={{ display: "flex", flexDirection: "row" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                    minWidth: "200px",
+                    margin: "5px",
+                    borderRadius: "10px",
+                  }}
                   key={eachResult["#IMDB_ID"]}
                 >
                   <Link
                     to={`/list-shows/${eachResult["#IMDB_ID"]}`}
                     onClick={(e) => handleSubmit(eachResult["#IMDB_ID"])}
-                    style={{ textDecoration: "none" }}
+                    style={{
+                      textDecoration: "none",
+                      width: "200px",
+                      maxWidth: "100%",
+                      maxHeight: "300px",
+                      margin: "5px",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
                   >
-                    <Card style={{ width: "10rem", margin: "0.5em" }}>
-                      <Card.Img
-                        style={{ maxHeight: "10rem", objectFit: "cover" }}
-                        variant="top"
-                        src={eachResult["#IMG_POSTER"]}
-                      />
+                    <Card>
+                      <div style={{ height: "200px", position: "relative" }}>
+                        <Card.Img
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            borderRadius: "10px",
+                          }}
+                          variant="top"
+                          src={eachResult["#IMG_POSTER"]}
+                        />
+                      </div>
                       <Card.Body
                         style={{
-                          height: "6rem",
+                          height: "100px",
                           display: "flex",
-                          flexDirection: "column",
                           justifyContent: "center",
+                          alignItems: "center",
                         }}
                       >
-                        <Card.Title className="card-title-search-bar">
+                        <Card.Title
+                          style={{
+                            color: "white",
+                            fontSize: "16px",
+                            lineHeight: "20px",
+                            textAlign: "center",
+                          }}
+                        >
                           {eachResult["#AKA"]}
                         </Card.Title>
                       </Card.Body>

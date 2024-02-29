@@ -1,9 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import API_URL from "../utils/api";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import ReviewForm from "../components/ReviewForm";
 import Button from "react-bootstrap/esm/Button";
 import LOCAL_URL from "../utils/databaseLocal";
@@ -49,9 +47,9 @@ function DetailsShow() {
 
   if (show === null) {
     return (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <TailSpin color={"white"} size={500} />
-        </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <TailSpin color={"white"} size={500} />
+      </div>
     );
   }
 
