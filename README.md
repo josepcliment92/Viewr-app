@@ -2,7 +2,7 @@
 
 ## [Viewr](https://viewr-app.netlify.app)
 
-![App Logo]("./src/assets/img/viewr-logo.png")
+![App Logo](./src/assets/img/viewr-logo.png)
 
 ## Description
 
@@ -77,4 +77,4 @@ Viewr is your ultimate destination for discovering, exploring, and celebrating t
 
 ### Slides
 
-[Slides Link]("./src/assets/presentacion/VIEWR-presentacion.pdf")
+[Slides Link](./src/assets/presentacion/VIEWR-presentacion.pdf)
