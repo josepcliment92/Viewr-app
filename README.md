@@ -1,28 +1,18 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
 # Project Name
 
 ## [Viewr](https://viewr-app.netlify.app)
 
-![App Logo]("../assets/img/viewr-logo.png")
+![App Logo]("./assets/img/viewr-logo.png")
 
 ## Description
 
 Viewr is your ultimate destination for discovering, exploring, and celebrating the world of movies and television. Whether you're a cinephile, TV enthusiast, or casual viewer, Viewr offers a comprehensive platform to satisfy your entertainment cravings.
 
-#### [Client Repo here](https://github.com/josepcliment92/Viewr-app)
-#### [Server Repo here](https://github.com/Abranucu/Viewr-server)
+#### [Client Repo](https://github.com/josepcliment92/Viewr-app)
+#### [Server Repo](https://github.com/Abranucu/Viewr-server)
 
 ## Technologies, Libraries & APIs used
 
-**NOTE -** List here all technologies used in the project like HTML, CSS, Javascript, React, axios, Bootstrap, etc.
 - HTML
 - CSS
 - Javascript
@@ -87,4 +77,4 @@ Viewr is your ultimate destination for discovering, exploring, and celebrating t
 
 ### Slides
 
-[Slides Link](www.your-slides-url-here.com)
+[Slides Link]("./assets/presentacion/VIEWR-presentacion.pdf")
