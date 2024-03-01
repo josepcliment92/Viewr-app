@@ -27,19 +27,19 @@ Viewr is your ultimate destination for discovering, exploring, and celebrating t
 
 ## Backlog Functionalities
 
-- Añadir la opción de marcar "Watched", "Currently Watching" o "Want to Watch" en cada carta
-- Mejorar la responsividad en todo tipo de dispositivos
+- To add an option to check "Watched", "Currently Watching" or "Want to Watch" on each letter
+- Improve responsiveness on all types of devices
 
 # Client Structure
 
 ## User Stories
 
-- **Leer información** - El usuario puede consultar los detalles de una película o serie, obtenidos de una API externa. También puede leer las reseñas que añaden el resto de usuarios y las suyas propias. 
-- **Filtrar información** - El usuario puede filtrar los resultados por orden alfabético o a través de una búsqueda personalizada. 
-- **Crear reseñas** - El usuario puede añadir una reseña con su nombre, opinión y puntuación a una película o serie. 
-- **Editar reseñas** - El usuario puede editar una reseña y modificar cualquiera de los datos: nombre, opinión y puntuación. 
-- **Eliminar reseñas** - El usuario puede eliminar reseñas, que dejan de aparecer tanto en el detalle de cada serie/película como en la Homepage.
-- **Gestión de errores** - Ante un fallo a la hora de cargar una página, URLs inexistentes o cualquier otro error se invita al usuario a volver a la Homepage. 
+- **Read information** - The user can consult the details of a movie or series, obtained from an external API. They can also read the reviews added by other users. 
+- **Filter information** - The user can filter the results alphabetically or through a customised search. 
+- **Create reviews** - The user can add a review with their name, opinion and rating about any film or series. 
+- **Edit reviews** - The user can edit a review and modify any of their aspects: name, opinion and rating.
+- **Delete reviews** - The user can delete reviews, which will no longer appear neither in the detail of each series/movie nor on the homepage.
+- **Error handling** - In the event of a page loading failure, non-existent URLs or any other error, the user is invited to return to the homepage. 
 
 ## Client Routes
 
