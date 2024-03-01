@@ -22,13 +22,6 @@ function SearchBar() {
   const handleSearch = (event) => {
     setSearch(event.target.value);
     setSpinner(true);
-    if (searchTimeout) {
-      clearTimeout(searchTimeout);
-    }
-    setSearch(
-      setTimeout(() => {}),
-      1000
-    );
   };
 
   const [showList, setShowList] = useState([]);
@@ -53,11 +46,6 @@ function SearchBar() {
     }, 1000);
     return () => clearTimeout(delaySearch);
   }, [search]);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate(`/list-shows/${eachResult["#IMDB_ID"]}`);
-  };
 
   return (
     <div>
@@ -93,7 +81,6 @@ function SearchBar() {
         </Offcanvas.Title>
 
         <Offcanvas.Body>
-          <Form inline onSubmit={handleSubmit}>
             <Row>
               <Col xs="auto">
                 <Form.Control
@@ -106,13 +93,12 @@ function SearchBar() {
               </Col>
               <Col xs="auto">
                 {spinner && (
-                  <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
                   </div>
                 )}
               </Col>
             </Row>
-          </Form>
           <div className="card-search-bar">
             {showList.map((eachResult) => {
               return (

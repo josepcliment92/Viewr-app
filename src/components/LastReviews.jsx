@@ -41,7 +41,7 @@ function LastReviews(props) {
         />
       );
     }
-    return <div>{starsArray}</div>;
+    return starsArray;
   }
 
   return (
