@@ -21,6 +21,7 @@ Viewr is your ultimate destination for discovering, exploring, and celebrating t
 - React
 - Axios
 - Bootstrap
+- Node.js
 - Netlify
 - Adaptable
 
