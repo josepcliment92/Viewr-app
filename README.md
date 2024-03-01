@@ -2,7 +2,7 @@
 
 ## [Viewr](https://viewr-app.netlify.app)
 
-![App Logo]("./assets/img/viewr-logo.png")
+![App Logo]("/assets/img/viewr-logo.png")
 
 ## Description
 
